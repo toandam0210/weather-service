@@ -1,27 +1,39 @@
 package com.weather.weathermonitor.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-
-public class WeatherMonitor{
-	private City city;
+@Entity
+@Table(name = "weatherdata", uniqueConstraints = { 
+		@UniqueConstraint(columnNames = "name")},schema = "public")
+public class WeatherData{
+	@Id
+	private String name;
+	@Column
 	private int temperature;
+	@Column
 	private int humidity;
+	@Column
 	private int rainchance;
-	public WeatherMonitor() {
+	public WeatherData() {
 		// TODO Auto-generated constructor stub
 	}
-	public WeatherMonitor(int temperature, int humidity, int rainchance) {
+	public WeatherData(String name, int temperature, int humidity, int rainchance) {
 		super();
+		this.name = name;
 		this.temperature = temperature;
 		this.humidity = humidity;
 		this.rainchance = rainchance;
 	}
 
-	public City getCity() {
-		return city;
+	public String getName() {
+		return name;
 	}
-	public void setCity(City city) {
-		this.city = city;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getTemperature() {
 		return temperature;
